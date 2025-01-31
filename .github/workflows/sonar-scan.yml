@@ -1,0 +1,20 @@
+name: sonar-scan
+
+on:
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  build:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: sqb_0241f76245fa8c7808d29540b6f47bd6391edb7a
+          SONAR_HOST_URL: https://cl6bs69z-9000.euw.devtunnels.ms/
