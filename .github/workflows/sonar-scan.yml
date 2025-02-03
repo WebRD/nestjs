@@ -6,22 +6,14 @@ on:
       - development
 
 jobs:
-  build:
-    name: Build and analyze
+  sonarqube:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 
-
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'      
-
-      - uses: sonarsource/sonarqube-scan-action@v2.0.1
-        env:
-          SONAR_TOKEN: sqp_84ece9c553c0b704235587130a69a4a609cb8b02
-          SONAR_HOST_URL: https://cl6bs69z-9000.euw.devtunnels.ms
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: sqp_84ece9c553c0b704235587130a69a4a609cb8b02
+        SONAR_HOST_URL: https://cl6bs69z-9000.euw.devtunnels.ms
