@@ -6,15 +6,14 @@ on:
       - development
 
 jobs:
-  build:
-    name: Build and analyze
+  sonarqube:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: sqp_84ece9c553c0b704235587130a69a4a609cb8b02
-          SONAR_HOST_URL: https://cl6bs69z-9000.euw.devtunnels.ms/
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: sqp_84ece9c553c0b704235587130a69a4a609cb8b02
+        SONAR_HOST_URL: https://3878-2409-40c1-303b-c925-14c7-6a8a-397-aa14.ngrok-free.app
